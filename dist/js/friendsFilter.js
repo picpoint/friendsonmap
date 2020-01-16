@@ -48,56 +48,30 @@ new Promise((resolve) => {	                                                     
   .then((response) => {                                                                  // читаем ответ    
     console.log(response);
 
+    
     ymaps.ready(init);                                                                   // инициализируем переменную ymaps
 
-    function init() {
+    function init() {      
       var myMap = new ymaps.Map("map", 
         {
-         center: [55.76, 37.64],
-         zoom: 10
+          center: [55.76, 37.64], 
+          zoom: 10
         }, 
         {
           searchControlProvider: 'yandex#search'
-        }
-      ),
+        });
 
-    // Создаем геообъект с типом геометрии "Точка".
-        myGeoObject = new ymaps.GeoObject(
+      myPieChart = new ymaps.Placemark();
+
+      myMap.geoObjects.add(myPieChart)
+        .add(new ymaps.Placemark([55.684758, 37.738521], 
           {
-            // Описание геометрии.
-            geometry: {
-                type: "Point",
-                coordinates: [55.8, 37.8]
-            },
-            // Свойства.
-            properties: {
-                // Контент метки.
-                iconContent: 'Я тащусь',
-                hintContent: 'Ну давай уже тащи'
-            }
+            balloonContent: 'красная метка'
           }, 
           {
-            // Опции.
-            // Иконка метки будет растягиваться под размер ее содержимого.
-            preset: 'islands#blackStretchyIcon',
-            // Метку можно перемещать.
-            draggable: true
-          }
-        ),
-        
-        myPieChart = new ymaps.Placemark();
-
-    myMap.geoObjects
-        .add(myGeoObject)
-        .add(myPieChart)
-        .add(new ymaps.Placemark([55.684758, 37.738521], {
-            balloonContent: 'цвет <strong>воды пляжа бонди</strong>'
-        }, {
-            preset: 'islands#icon',
-            iconColor: '#0095b6'
-        }));
-        
-}
+            preset: 'islands#icon', iconColor: 'red'
+          }));        
+    }
 
     
   });
