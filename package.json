@@ -1,0 +1,22 @@
+{
+  "name": "friends on map",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "author": "rmtar",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.26.7",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^4.2.0",
+    "gulp-htmlmin": "^5.0.1",
+    "gulp-install": "^1.1.0",
+    "gulp-less": "^4.0.1",
+    "smart-grid": "^2.1.2"
+  },
+  "dependencies": {}
+}
