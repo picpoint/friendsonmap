@@ -1,4 +1,3 @@
-let keyAPI = '0735696f-0a98-472f-9ffc-143c71d3f506';
 
 new Promise((resolve) => {	                                                          	// создаём промис
   window.addEventListener('load', () => {		                                            // по событию загрузки страницы разрешаем промис
@@ -36,7 +35,7 @@ new Promise((resolve) => {	                                                     
   })
   .then(() => {
     return new Promise((resolve, reject) => {                                            // возвращаем новый промис
-      VK.api('friends.get', {v: '5.8', fields: 'photo_100'}, (response) => {             // передаём параметры для выгрузки фото 
+      VK.api('friends.get', {v: '5.8', fields: 'photo_100,city'}, (response) => {             // передаём параметры для выгрузки фото 
         if(response.error) {                                                             // если ошибка ответа
           reject(new Error(response.error.error_msg));                                   // реджектим ответ  
         } else {
@@ -47,15 +46,14 @@ new Promise((resolve) => {	                                                     
   })
   .then((response) => {                                                                  // читаем ответ    
     console.log(response);
-
     
     ymaps.ready(init);                                                                   // инициализируем переменную ymaps
 
     function init() {      
       var myMap = new ymaps.Map("map", 
         {
-          center: [55.76, 37.64], 
-          zoom: 10
+          center: [45.04, 41.96], 
+          zoom: 12
         }, 
         {
           searchControlProvider: 'yandex#search'
@@ -64,7 +62,7 @@ new Promise((resolve) => {	                                                     
       myPieChart = new ymaps.Placemark();
 
       myMap.geoObjects.add(myPieChart)
-        .add(new ymaps.Placemark([55.684758, 37.738521], 
+        .add(new ymaps.Placemark([45.04, 41.96], 
           {
             balloonContent: 'красная метка'
           }, 
